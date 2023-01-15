@@ -5,8 +5,7 @@ CREATE DATABASE raffle_takehome;
 
 CREATE TABLE raffles (
     id SERIAL PRIMARY KEY,
-    rafflename TEXT NOT NULL, 
-    winnerid INTEGER,
+    raffle_name TEXT NOT NULL, 
     secret_token TEXT NOT NULL,
     date_created TIMESTAMP NOT NULL,
     date_ended TIMESTAMP
@@ -14,10 +13,19 @@ CREATE TABLE raffles (
 
 CREATE TABLE tickets (
     id SERIAL PRIMARY KEY,
-    raffleid INTEGER REFERENCES raffles (id)
+    raffle_id INTEGER REFERENCES raffles (id)
     ON DELETE CASCADE,
-    firstname TEXT NOT NULL,
-    lastname TEXT NOT NULL,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
     email TEXT NOT NULL,
     phone TEXT
+);
+
+CREATE TABLE winners (
+    id SERIAL PRIMARY KEY,
+    winner_name TEXT NOT NULL,
+    raffle_id INTEGER REFERENCES raffles (id)
+    ON DELETE CASCADE,
+    ticket_id INTEGER REFERENCES tickets (id)
+    ON DELETE CASCADE
 );

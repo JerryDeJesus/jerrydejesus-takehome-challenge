@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
+import Participants from './pages/Participants';
+import Winner from './pages/Winner';
+import RaffleDetailsAndSignUp from './pages/RaffleDetailsAndSignUp';
 import './App.css';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <main >
+        <div>
+         {/* <NavBar /> */}
+         <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/:id" element={<RaffleDetailsAndSignUp />} />
+            <Route path="/:id/participants" element={<Participants />} />
+            <Route path="/:id/winner" element={<Winner />} />
+            <Route path="*" element={<NotFound />} />
+         </Routes>
+        </div>
+      </main>
+        {/* <Footer /> */}
+    </Router>
   );
 }
-
-export default App;
