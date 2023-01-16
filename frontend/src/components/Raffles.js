@@ -15,13 +15,13 @@ export default function Raffles (){
     }, [API]);
 
     let displayRaffles = raffles.map((raffle, index) => {
+        console.log(raffle);
         return <Raffle key={index} raffle={raffle} />
     });
 
     return(
         <div>
             {displayRaffles}
-            Sign up here!
         </div>
     )
 }

@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import { format, parseISO } from "date-fns";
 
 export default function Raffle ({raffle}){
-
+    // console.log(raffle)
     let formattedDateStarted = format(parseISO(raffle.date_created), "MM/dd/yyyy hh:mm aaaaa'm'");
-    let formattedDateEnded = format(parseISO(raffle.date_created), "MM/dd/yyyy hh:mm aaaaa'm'");
+    let formattedDateEnded = format(parseISO(raffle.date_ended), "MM/dd/yyyy hh:mm aaaaa'm'");
 
     return(
         <div>

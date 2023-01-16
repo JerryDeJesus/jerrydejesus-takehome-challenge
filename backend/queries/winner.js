@@ -2,43 +2,50 @@ const db = require('../db/dbConfig');
 const { getParticipantsByRaffleId } = require('./raffles');
 
 //view a raffle's winner's info
-const viewWinner = async (raffle_id) => {
+const getWinner = async (id) => {
     try {
-        const winningTicket = await db.one("SELECT * FROM winners WHERE raffle_id = $1", raffle_id);
+        let IntegerId = Number(id);
+        const winningTicket = await db.one("SELECT * FROM winners WHERE id = $1", IntegerId);
         return winningTicket
     } catch (error) {
         return error   
     }
 };
 
-//post to winners table
-const selectWinner = async (raffle_id, secret_token) => {
+const selectWinner = async (id, secret_token) => {
     try {
         //check for matching secret_tokens
-        const raffle = await db.one("SELECT FROM raffles WHERE raffle_id = $1", raffle_id);
+        const raffle = await db.one("SELECT * FROM raffles WHERE id = $1", id);
         if(!raffle) throw new Error('Raffle not found');
-        if(raffle.secret_token !== secret_token) throw new Error('Invalid secret_token!')
 
-        //confirm raffle has not ended/found a winner
-        const possibleWinner = await viewWinner(raffle_id);
-        if(possibleWinner) throw new Error('Winner already exists');
+        if(raffle.secret_token !== secret_token){
+            throw new Error('Invalid secret_token!')
+        } 
+        
+        //confirm raffle is ongoing/hasn't found a winner
+        const possibleWinner = await getWinner(id);
+        if(possibleWinner.id){
+            throw new Error('Winner already exists');
+        }
 
         //decide a winner
-        const participants = await getParticipantsByRaffleId(raffle_id);
+        const participants = await getParticipantsByRaffleId(id);
+
         const randomParticipantIndex = Math.floor(Math.random() * participants.length);
-        const winner = participants[randomParticipantIndex];
-        const winnerFormatted = {
-         "winner_name": `${winner.first_name} ${winner.last_name}`,
-         "raffle_id": winner.raffle_id, 
-         "ticket_id": winner.ticket_id
-        }
-        return winnerFormatted
+        const winningTicket = participants[randomParticipantIndex];
+        const winnerName = `${winningTicket.first_name} ${winningTicket.last_name}`;
+
+        const winner = await db.one("INSERT INTO winners (winner_name, raffle_id, ticket_id, email, phone) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+            [winnerName, winningTicket.raffle_id, winningTicket.id, winningTicket.email, winningTicket.phone]
+        );
+
+        return winner
     } catch (error) {
         return error
     }
 };
 
 module.exports = {
-    viewWinner,
+    getWinner,
     selectWinner
 }

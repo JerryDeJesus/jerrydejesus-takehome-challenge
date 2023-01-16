@@ -10,7 +10,6 @@ export default function ParticipantList (){
 
 
     useEffect(()=>{
-        console.log('here');
 
         axios.get(`${API}/raffles/${id}/participants`)
             .then(res => {
@@ -22,8 +21,6 @@ export default function ParticipantList (){
     let displayParticipants = participants.map((participant, index) => {
         return <Participant key={index} participant={participant} />
     });
-
-    console.log(displayParticipants)
 
     return(
         <div>

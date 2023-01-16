@@ -1,7 +1,7 @@
 const express = require('express');
 const raffles = express.Router({ mergeParams: true });
-const { getAllRaffles, getRaffle, createRaffle, getParticipantsByRaffleId } = require('../queries/raffles');
-const { viewWinner, selectWinner } = require('../queries/winner');
+const { getAllRaffles, getRaffle, createRaffle, getParticipantsByRaffleId, updateRaffle } = require('../queries/raffles');
+const { getWinner, selectWinner } = require('../queries/winner');
 
 //list all raffles
 raffles.get('/', async (req, res) => {
@@ -16,7 +16,7 @@ raffles.get('/', async (req, res) => {
 //get raffle by raffle_id
 raffles.get("/:id", async (req, res) => {
     try {
-        const {id} = req.params;
+        const { id } = req.params;
         const raffle = await getRaffle(id);
         res.status(200).json(raffle);
     } catch(error) {
@@ -34,6 +34,7 @@ raffles.post("/", async (req, res) => {
     }
 });
 
+//update raffle?
 raffles.put("/:id", async (req, res) => {
     try {
         const {id} = req.params;
@@ -43,8 +44,6 @@ raffles.put("/:id", async (req, res) => {
         res.status(500).json({error: "Raffle not found"});
     }
 });
-
-//mergeParams allows for this
 
 //get all of a raffle's participants
 raffles.get("/:id/participants", async (req,res) => {
@@ -60,24 +59,26 @@ raffles.get("/:id/participants", async (req,res) => {
 //get winner by raffle_id
 raffles.get("/:id/winner", async (req, res) => {
     try {
-        const {id} = req.params;
-        const raffleWinner = await viewWinner(id);
+        const { id } = req.params;
+        const raffleWinner = await getWinner(id);
+
         res.status(200).json(raffleWinner);
     } catch (error) {
-        return error
+        res.status(500).json({error: "Error viewing raffle winner"});
     }
 });
 
 //select a winner from the participants of the raffle
 raffles.put("/:id/winner", async (req, res) => {
     try {
-        const {id} = req.params;
-        const winner = await selectWinner(id, req.body.secret_token);
+        const { id } = req.params;
+        const { secret_token } = req.body;
+        const winner = await selectWinner(id, secret_token);
+
         res.status(200).json(winner);
     } catch (error) {
-        res.status(500).json({error: "Error selecting raffle winner"});
+        res.status(500).json({error: "Error selecting winner"});
     }
 })
-
 
 module.exports = raffles;
