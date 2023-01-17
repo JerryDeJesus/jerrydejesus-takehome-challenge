@@ -1,5 +1,3 @@
-import { format } from "date-fns";
-
 export default function Participant ({participant}){
     let formattedName = participant.first_name[0].toUpperCase() + participant.first_name.slice(1) + ' ' + 
                         participant.last_name[0].toUpperCase() + participant.last_name.slice(1);
