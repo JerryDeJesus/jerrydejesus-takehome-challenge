@@ -1,7 +1,7 @@
 export default function NotFound(){
     return(
         <div className='not-found'>
-            <h2>No page found.</h2>
+            <h1 className="title">No page found.</h1>
         </div>
     )
 };

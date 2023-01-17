@@ -37,7 +37,7 @@ raffles.post("/", async (req, res) => {
 //update raffle?
 raffles.put("/:id", async (req, res) => {
     try {
-        const {id} = req.params;
+        const { id } = req.params;
         const updatedRaffle = await updateRaffle(id, req.body);
         res.status(200).json(updatedRaffle);
     } catch (error) {
@@ -74,7 +74,7 @@ raffles.put("/:id/winner", async (req, res) => {
         const { id } = req.params;
         const { secret_token } = req.body;
         const winner = await selectWinner(id, secret_token);
-
+        console.log(winner)
         res.status(200).json(winner);
     } catch (error) {
         res.status(500).json({error: "Error selecting winner"});

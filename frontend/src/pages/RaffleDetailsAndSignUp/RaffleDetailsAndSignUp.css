@@ -1,0 +1,47 @@
+#raffle-details-and-signup-page{
+    display:flex;
+    flex-direction: column;
+    margin: 0px 20px 20px 20px;
+    align-items: center;
+    border: 1px solid rgba(82, 82, 163, 0.5);
+    border-top: none;
+    border-top: none;
+    border-radius: 10px;
+    box-shadow: 0px 23px 5px 15px rgba(82, 82, 163, 0.3);
+}
+
+#raffle-details-and-signup-page a:hover{
+    box-shadow: none;
+    cursor: default;
+}
+
+h1{
+    text-align: center;
+}
+
+h3{
+    text-align: center;
+}
+
+.signup{
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    margin-bottom: 30px;
+    outline: 1px solid rgba(82, 82, 163, 0.5);
+    width: 95%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.signup-buttons button{
+    margin: 5px 5px;
+}
+
+.new-participant-form{
+    padding-bottom: 20px;
+}
+
+.raffle-listing-inner *{
+    text-align: left;
+}

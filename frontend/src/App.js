@@ -1,12 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import NotFound from './pages/NotFound';
-import Participants from './pages/Participants';
+import Participants from './pages/Participants/Participants';
 import WinnerPage from './pages/WinnerPage';
-import RaffleDetailsAndSignUp from './pages/RaffleDetailsAndSignUp';
+import RaffleDetailsAndSignUp from './pages/RaffleDetailsAndSignUp/RaffleDetailsAndSignUp';
 import './App.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
+  
   return (
     <Router>
       <main >
@@ -20,8 +23,8 @@ export default function App() {
             <Route path="*" element={<NotFound />} />
          </Routes>
         </div>
+        <ToastContainer />
       </main>
-        {/* <Footer /> */}
     </Router>
   );
 }

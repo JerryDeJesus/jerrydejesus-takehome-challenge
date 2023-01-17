@@ -8,7 +8,8 @@ CREATE TABLE raffles (
     raffle_name TEXT NOT NULL UNIQUE, 
     secret_token TEXT NOT NULL,
     date_created TIMESTAMP NOT NULL,
-    date_ended TIMESTAMP
+    date_ended TIMESTAMP,
+    winner_name TEXT
 );
 
 CREATE TABLE tickets (

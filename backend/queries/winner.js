@@ -39,6 +39,10 @@ const selectWinner = async (id, secret_token) => {
             [winnerName, winningTicket.raffle_id, winningTicket.id, winningTicket.email, winningTicket.phone]
         );
 
+        //update raffle table to reflect new winner
+        const updatedRaffle = await db.one("UPDATE raffles SET winner_name = $1 WHERE id = $2 RETURNING * ", 
+        [winnerName, id]
+        );
         return winner
     } catch (error) {
         return error

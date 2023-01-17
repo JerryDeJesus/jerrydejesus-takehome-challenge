@@ -1,5 +1,32 @@
-#home-page{
-  display:flex;
-  flex-direction: column;
-  align-items: center;
+*{
+    text-decoration: none;
+    color: black;
+    transition: all 0.2s ease;
 }
+
+.title{
+    font-size: 50px;
+    border-bottom: 1px solid black;
+    display: flex;
+    margin: 0;
+    margin-bottom: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    width: 100vw;
+}
+
+.navbar{
+    display: flex;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 50px;
+    justify-content: center
+}
+
+.navbar-items{
+    padding: 0px 10px;
+}
+

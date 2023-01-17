@@ -1,0 +1,71 @@
+h2{
+    padding-left: 15px;
+}
+
+h3{
+    text-align: left;
+}
+
+#home-page{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px 20px 20px;
+    border: 1px solid rgba(82, 82, 163, 0.5);
+    border-top: none;
+    border-radius: 10px;
+    box-shadow: 0px 23px 5px 15px rgba(82, 82, 163, 0.3);
+}
+
+form{
+    text-align: center;
+}
+
+.create-raffle-box{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(82, 82, 163, 0.5);
+    border-radius: 10px;
+    margin-bottom: 25px;
+    width: 96%;
+}
+
+.create-raffle-box h2{
+    margin-bottom: 0px;
+}
+
+.new-raffle-form{
+    margin: 0px 0px 25px 0px;
+}
+
+.all-raffles-box{
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(82, 82, 163, 0.5);
+    width: 96%;
+    border-radius: 10px;
+    text-align: center;
+    /* box-shadow: 5px 10px rgba(211, 211, 211, 0.5); */
+}
+
+.raffle-listing{
+    display:flex;
+    margin: 0px 15px 30px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(82, 82, 163, 0.5);
+    transition: all 0.2s ease;
+    text-align: center;
+    justify-content: center;
+    width: 95%;
+}
+
+.raffle-listing:hover{
+    box-shadow: 0px 0px 23px rgba(82, 82, 163, 0.5);
+    /* border: 0.1px solid rgba(82, 82, 163, 0.3); */
+}
+
+.text-field div{
+    margin-top: 0px;
+}
