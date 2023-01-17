@@ -27,4 +27,4 @@ REACT_APP_API_URL=http://localhost:8888
 ```
 
 - Be sure to navigate to the backend root and run these three commands in order: `npm run dbinit`, `npm run dbseed`, and `npm start`. This will initalize, seed, and start the backend.
-After completing the above steps, navigate to frontend and run `npm start` on to launch React project.
+After completing the above steps, navigate to frontend and run `npm start` to launch the frontend React portion.
