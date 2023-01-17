@@ -6,7 +6,7 @@ export default function ShowParticipants (){
   
     return(
         <div id="participants-page">
-            <h1 className='title'>Raffle Participants</h1>
+            <h1 className='subtitle'>Raffle Participants</h1>
             <RaffleNav activePage={'Participants'}/>
             <ParticipantList />
         </div>

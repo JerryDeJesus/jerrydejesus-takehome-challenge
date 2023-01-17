@@ -29,13 +29,13 @@ export default function RaffleDetailsAndSignUp (){
 
     return(
         <div id="raffle-details-and-signup-page">
-            <h1 className="title">Registration for {raffleInfo.raffle_name}</h1>
+            <h1 className="subtitle">Registration for {raffleInfo.raffle_name}</h1>
 
             <RaffleNav activePage={"Register"}/>
 
             {!loadingStatus ? <Raffle raffle={raffleInfo}/> : "Loading..."}
 
-            {raffleInfo.winner_name ? "Winner has already been determined. Raffle is closed." : <SignUp raffleInfo={raffleInfo}/>}
+            {raffleInfo.winner_name ? <h1 className="raffle-closed">Registration has closed, the raffle has ended.</h1> : <SignUp raffleInfo={raffleInfo}/>}
         </div>
     )
 }

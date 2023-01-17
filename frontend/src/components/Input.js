@@ -10,7 +10,7 @@ export default function Input(label, name, value, handleInputChange, formType, e
         label={label}
         inputProps={{ style: { fontSize: 20, width: "550px" } }}
         InputLabelProps={{
-          style: { fontSize: 20 },
+          style: { fontSize: 18 },
         }}
         required
         name={name}

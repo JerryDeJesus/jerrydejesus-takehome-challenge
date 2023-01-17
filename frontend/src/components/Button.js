@@ -12,6 +12,7 @@ export default function CustButton (customHeight, customWidth, colorChosen, acti
             size="large"
             color={colorChosen}
             onClick={action}
+            style={{borderRadius:25}}
         >
             {text}
         </Button>

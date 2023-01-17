@@ -28,16 +28,21 @@ export default function Home (){
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        axios.post(`${API}/raffles`, raffle)
-        .then(res => {
-            toast('Raffle successfully created!')
-            loadRaffles();
-        })
-        .catch(err => {
-            toast(err.response.data.error + ', please double check fields.')
-            console.log(err)
-        })
+        if(raffle_name && secret_token){
+            axios.post(`${API}/raffles`, raffle)
+            .then(res => {
+                toast('Raffle successfully created!')
+                loadRaffles();
+            })
+            .catch(err => {
+                toast(err.response.data.error + ', please double check fields.')
+                console.log(err)
+            })
+        }else if(!raffle_name){
+            toast(`You must enter a name for your raffle to be created!`)
+        }else if(!secret_token){
+            toast(`You must enter a secret token for your raffle to be created!`)
+        }
     };
     
     const handleTextChange = (e) => {
@@ -48,11 +53,10 @@ export default function Home (){
 
     return(
         <div id="home-page">
-            <h1 className="title">Raffle App</h1>
 
             <div className="create-raffle-box">
                 <form onSubmit={handleSubmit} className="new-raffle-form">
-                    <h2>Create a raffle below:</h2>
+                    <h2>Create a New Raffle:</h2>
                     <div>
                         {Input('Raffle Name', 'raffle_name', raffle_name, handleTextChange,'standard')}
                         {Input('Secret Token/Password', 'secret_token', secret_token, handleTextChange, 'password')}

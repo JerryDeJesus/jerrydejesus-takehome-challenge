@@ -20,16 +20,15 @@ export default function ParticipantList (){
             .catch(error => {
                 console.log(error)
             })
-    }, [API, id]);
+    }, [id]);
 
     let displayParticipants = participants.map((participant, index) => {
         return <Participant key={index} participant={participant} />
     });
 
     let noParticipants = 
-    <h1 className="no-participants">No participants yet!</h1>
+    <h1 className="no-participants">No participants yet!</h1>;
 
-    
     return(
         <div className="participant-container">
             {loadingStatus ? "Loading..." : participants.length ? displayParticipants : noParticipants}

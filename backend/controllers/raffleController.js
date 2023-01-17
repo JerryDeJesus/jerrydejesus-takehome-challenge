@@ -74,7 +74,6 @@ raffles.put("/:id/winner", async (req, res) => {
         const { id } = req.params;
         const { secret_token } = req.body;
         const winner = await selectWinner(id, secret_token);
-        console.log(winner)
         res.status(200).json(winner);
     } catch (error) {
         res.status(500).json({error: "Error selecting winner"});
