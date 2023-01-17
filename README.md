@@ -7,7 +7,6 @@ A Full Stack Web App, Raffle App, including a RestAPI and connected Web Client (
 - Fork the most recent version from GitHub.
 - `git clone` the forked repo to your local machine.
 - In the terminal, navigate to each the frontend AND backend and for EACH, run `npm install` to install the necessary dependencies included in their  respective `package.json` files.
-- go into `package.json` and put `server.js` as the value for the key `main`
 - Do not forget to create and include a `.env` file on BOTH the frontend AND backend roots.
 
 
