@@ -31,18 +31,6 @@ const createRaffle = async (raffle) => {
     return newRaffle
 };
 
-const updateRaffle = async (id, raffle) => {
-    let date_ended = new Date(Date.now());
-    try {
-        const updatedRaffle = await db.one("UPDATE raffles SET date_ended = $1 WHERE id = $2 RETURNING * ", 
-        [date_ended, id]
-        );
-        return updatedRaffle
-    } catch (error) {
-        return error
-    }
-};
-
 //get all of a single raffle's participants
 const getParticipantsByRaffleId = async (raffle_id) => {
     try {
@@ -58,5 +46,4 @@ module.exports = {
     getRaffle,
     createRaffle,
     getParticipantsByRaffleId,
-    updateRaffle
 }

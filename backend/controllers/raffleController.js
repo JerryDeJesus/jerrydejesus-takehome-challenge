@@ -1,6 +1,6 @@
 const express = require('express');
 const raffles = express.Router({ mergeParams: true });
-const { getAllRaffles, getRaffle, createRaffle, getParticipantsByRaffleId, updateRaffle } = require('../queries/raffles');
+const { getAllRaffles, getRaffle, createRaffle, getParticipantsByRaffleId, } = require('../queries/raffles');
 const { getWinner, selectWinner } = require('../queries/winner');
 
 //list all raffles
@@ -34,11 +34,12 @@ raffles.post("/", async (req, res) => {
     }
 });
 
-//update raffle?
+//update raffle
 raffles.put("/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const updatedRaffle = await updateRaffle(id, req.body);
+        console.log(updatedRaffle)
         res.status(200).json(updatedRaffle);
     } catch (error) {
         res.status(500).json({error: "Raffle not found"});

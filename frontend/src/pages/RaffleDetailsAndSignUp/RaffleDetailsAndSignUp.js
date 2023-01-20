@@ -35,7 +35,7 @@ export default function RaffleDetailsAndSignUp (){
 
             {!loadingStatus ? <Raffle raffle={raffleInfo}/> : "Loading..."}
 
-            {raffleInfo.winner_name ? <h1 className="raffle-closed">Registration has closed, the raffle has ended.</h1> : <SignUp raffleInfo={raffleInfo}/>}
+            {!loadingStatus ? raffleInfo.winner_name ? <h1 className="raffle-closed">Registration has closed, the raffle has ended.</h1> : <SignUp raffleInfo={raffleInfo}/> : "Loading..."}
         </div>
     )
 }

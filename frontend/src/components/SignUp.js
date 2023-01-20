@@ -29,18 +29,31 @@ export default function SignUp(){
         e.preventDefault();
         let participantLink = `/${id}/participants`;
 
-        axios.post(`${API}/tickets`, participant)
-        .then(res => {
-            let formattedName = participant.first_name[0].toUpperCase() + participant.first_name.slice(1) + ' ' + 
-            participant.last_name[0].toUpperCase() + participant.last_name.slice(1);
+        //check if the appropriate fields have value with through state, else Toast popup
+        if(first_name && last_name && email){
+            //fix capitalizations before sending to backend
+            let formattedFirstName = participant.first_name[0].toUpperCase() + participant.first_name.slice(1);
+            let formattedLastName = participant.last_name[0].toUpperCase() + participant.last_name.slice(1);
+            participant.first_name = formattedFirstName;
+            participant.last_name = formattedLastName;
 
-            navigate(participantLink)
-            toast(`${formattedName} has been added to the raffle.`)
-        })
-        .catch(err => {
-            toast('Error adding participant to the raffle.')
-            console.log(err)
-        })
+            axios.post(`${API}/tickets`, participant)
+            .then(res => {
+    
+                navigate(participantLink)
+                toast(`${formattedFirstName} ${formattedLastName} has been added to the raffle.`)
+            })
+            .catch(err => {
+                toast('Error adding participant to the raffle.')
+                console.log(err)
+            })
+        }else if(!first_name){
+            toast(`A first name is required.`)
+        }else if(!last_name){
+            toast(`A last name is required.`)
+        }else if(!email){
+            toast(`An email is required.`)
+        }
     };
 
     const handleReset = (e) => {

@@ -9,13 +9,13 @@ const API = process.env.REACT_APP_API_URL;
 
 export default function WinnerPage (){
     const [winnerInfo, setWinnerInfo] = useState([]);
-
     const { id } = useParams();
 
     useEffect(()=>{
-        
+
         axios.get(`${API}/raffles/${id}/winner`)
         .then((res)=> {
+            console.log(res.data)
             if(res.data.winner_name !== undefined){
                 setWinnerInfo(res.data)
             } 
@@ -23,7 +23,7 @@ export default function WinnerPage (){
         .catch(err => console.log(err))
     }, [id]);
 
-    //if no winner is found, use select winner component
+    //if no winner is found, use select winner component, else display winnerCard
         return(
             <div id="winner-page">
                 {winnerInfo.winner_name ? <WinnerCard winnerInfo={winnerInfo}/>: <SelectWinner />}

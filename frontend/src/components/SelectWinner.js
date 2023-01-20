@@ -15,16 +15,16 @@ export default function SelectWinner (){
     const handleSubmit = () => {
       axios.put(`${API}/raffles/${id}/winner`, {id, secret_token})
           .then(res => {
-            //keep end of raffle celebration from undefined fetch requests
-            if(res.data.winner_name !== undefined && res.data.winner_name !== ''){
-              window.location.reload()
-              toast(`${res.data.winner_name} has won the raffle!`);
+            //simple frontend password verification/popup message
+            if(res.data.winner_name === undefined || res.data.winner_name === ''){
+              toast(`Incorrect secret token, try again.`);
+            }else{
+                window.location.reload();
             }
           })
           .catch(err => {
-            toast(`${err.response.data.error}, please double-check your secret token.`)
+            console.log(err)
           });
-      axios.put(`${API}/raffles/${id}`)
     };
 
     const handleTextChange = (e) => {

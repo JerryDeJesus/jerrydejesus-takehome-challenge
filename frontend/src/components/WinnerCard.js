@@ -5,6 +5,7 @@ import Confetti from 'react-confetti';
 export default function Winner ({winnerInfo}){
     let formattedPhone = '';
     formattedPhone = `(${winnerInfo.phone.slice(0,3)}) ${winnerInfo.phone.slice(3,6)}-${winnerInfo.phone.slice(6)}`;
+    
     return(
         <div>
             {winnerInfo.winner_name ? <Confetti width={window.width}/> : ""}
