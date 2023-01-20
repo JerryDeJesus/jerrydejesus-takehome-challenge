@@ -12,7 +12,7 @@ export default function Raffle ({raffle}){
                 <div className="raffle-listing-inner">
                     <h3>Raffle Name: {raffle.raffle_name}</h3>
                     <h3>Created: {formattedDateStarted}</h3>
-                    {raffle.date_ended !== '3000-01-01T05:00:00.001Z' ? <h3>Ended: {formattedDateEnded}</h3> : ""}
+                    {raffle.date_ended[0] !== '3' ? <h3>Ended: {formattedDateEnded}</h3> : ""}
                     {raffle.winner_name ? <h3>Winner: {raffle.winner_name}</h3> : ""}
                 </div>
         </Link>

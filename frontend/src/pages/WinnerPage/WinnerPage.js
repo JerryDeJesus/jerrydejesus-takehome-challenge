@@ -12,10 +12,8 @@ export default function WinnerPage (){
     const { id } = useParams();
 
     useEffect(()=>{
-
         axios.get(`${API}/raffles/${id}/winner`)
         .then((res)=> {
-            console.log(res.data)
             if(res.data.winner_name !== undefined){
                 setWinnerInfo(res.data)
             } 
@@ -26,7 +24,7 @@ export default function WinnerPage (){
     //if no winner is found, use select winner component, else display winnerCard
         return(
             <div id="winner-page">
-                {winnerInfo.winner_name ? <WinnerCard winnerInfo={winnerInfo}/>: <SelectWinner />}
+                {winnerInfo.winner_name ? <WinnerCard winnerInfo={winnerInfo}/> : <SelectWinner />}
             </div>
         )
     }

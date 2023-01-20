@@ -39,7 +39,6 @@ raffles.put("/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const updatedRaffle = await updateRaffle(id, req.body);
-        console.log(updatedRaffle)
         res.status(200).json(updatedRaffle);
     } catch (error) {
         res.status(500).json({error: "Raffle not found"});

@@ -16,7 +16,6 @@ const selectWinner = async (id, secret_token) => {
     try {
         //check for matching secret_tokens
         const raffle = await db.one("SELECT * FROM raffles WHERE id = $1", id);
-        if(!raffle) console.log(raffle)
 
         if(raffle.secret_token !== secret_token){
             throw new Error('Invalid secret_token!')
